@@ -67,14 +67,61 @@ INSERT INTO disciplina VALUES
 	(11,'Banco de Dados 2',14,3,1,80,'segunda-feira','T',7),
 	(12,'Inglês Técnico',15,4,null,50,'segunda-feira','T',2);
 
-select nome, salario, formação from professor where salario = 5697.52 or salario = 6987.32 or salario = 7512.14;
-select nome, formação from professor where formação not in( "Ciências da Computação", "Administração" ); 
-select nome, salario from professor where salario between 5800 and 7000;
-select nome, salario from professor where salario not between 6000 and 7500;
-select * from professor where nome like "m%";
-select * from disciplina where nome not like "%Banco%";
-select nome, matricula from professor where CH_disponivel is null;
-select nome from disciplina where mat_professor is not null;
-select nome, salario, CH_disponivel from professor where salario > 6000 and CH_disponivel > 10;
-select nome, formação from professor where formação = "Administração" or formação = "Engenharia de Software";
-select * from disciplina where dia_semana not in("segunda-feira") and qtde_matriculados > 10;
+select nome, salario, formação from professor
+	where salario = 5697.52 or salario = 6987.32 or salario = 7512.14;
+
+select nome, formação from professor
+	where formação not in( "Ciências da Computação", "Administração" ); 
+
+select nome, salario from professor
+	where salario between 5800 and 7000;
+
+select nome, salario from professo
+	where salario not between 6000 and 7500;
+
+select * from professor
+	where nome like "m%";
+
+select * from disciplina
+	where nome not like "%Banco%";
+
+select nome, matricula from professor
+	where CH_disponivel is null;
+
+select nome from disciplina
+	where mat_professor is not null;
+
+select nome, salario, CH_disponivel from professor
+	where salario > 6000 and CH_disponivel > 10;
+
+select nome, formação from professor
+	where formação = "Administração" or formação = "Engenharia de Software";
+
+select * from disciplina
+	where dia_semana not in("segunda-feira") and qtde_matriculados > 10;
+
+select nome, qtde_matriculados, dia_semana, turno from disciplina
+	where ( (dia_semana = "segunda-feira" or dia_semana = "quarta-feira")
+		and qtde_matriculados between 10 
+		and 40 and nome like "%Banco%")
+	or ( dia_semana = "sexta-feira" 
+		and qtde_matriculados between 15 and 40);
+
+select nome, salario, formação from professor
+	where ( ( formação = "Ciências da Computação" or formação = "Engenharia de Software" )
+		and salario between 5500 and 7000 )
+	or ( formação = "Administração" and salario > 6500 );
+
+select nome, qtde_matriculados, dia_semana, turno from disciplina
+	where ( qtde_matriculados between 15 and 40 ) 
+	and ( dia_semana in( "segunda-feira", "terça-feira", "quarta-feira" ) )
+	and ( nome not like "%TCC%" and nome not like "%Português%" );
+
+select nome, formação, CH_disponivel from professor
+	where ( CH_disponivel between 10 and 25 )
+	and not( formação = "Administração" )
+	and ( nome like "%a%" );
+
+select nome, qtde_matriculados, dia_semana from disciplina
+	where ( mat_professor is null or num_sala is null )
+	and ( qtde_matriculados >= 10 );		
