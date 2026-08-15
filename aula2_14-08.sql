@@ -1,7 +1,3 @@
-create schema mateusemarcio;
-use mateusemarcio;
-
-
 CREATE TABLE professor(
 	matricula integer PRIMARY key AUTO_INCREMENT,
     nome varchar(30),
