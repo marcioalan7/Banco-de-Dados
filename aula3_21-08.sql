@@ -132,3 +132,6 @@ select * from disciplina where mat_professor =
     
 select nome from disciplina where num_sala =
 	(select numero from sala where descricao = 'Laborátorio 01');
+
+select nome from disciplina where num_sala in
+	(select numero from sala where descricao like 'Laborátorio%')
