@@ -57,7 +57,7 @@ select nome, nome_coordenador from curso order by vagas desc limit 2;
 
 -- Relacione o nome do curso, a quantidade de vagas ofertadas caso houvesse um aumento de 10% na oferta
 select * from curso;
-select nome, vagas * 1.10 from curso;
+select nome, vagas * 1.10 as 'Vagas Ofertadas' from curso;
 
 -- Listar os alunos ordenados primeiro pela cidade em ordem alfabética e pelo nome inversa a alfabética
 select * from aluno;
