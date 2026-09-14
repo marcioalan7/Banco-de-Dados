@@ -1,7 +1,3 @@
-create schema adryanmarcio;
-use adryanmarcio;
-
-
 CREATE TABLE professor(
 	matricula integer PRIMARY key AUTO_INCREMENT,
     nome varchar(30),
@@ -111,11 +107,21 @@ select nome, qtde_matriculados from professor where qtde_matriculados >
 	( select qtde_matriculados from professor where nome = 'Multimídia') order by qtde_matriculados desc;
 
 -- 10. Liste as disciplinas que não possuem professor cadastrado e que não aconteçam nas segundas nem nas quartas.
+select * from disciplina;
+select * from disciplina where mat_professor is null and dia_semana not in('segunda-feira', 'quarta-feira');
 
 -- 11. Liste as disciplinas ministradas pelo professor que possui a maior CH disponível.
+select * from disciplina;
+select * from professor;
+select * from disciplina where mat_professor =
+	( select matricula from professor order by ch_disponivel desc limit 1 );
 
 -- 12. Liste os professores que não são coordenadores de nenhum curso.
 -- Apresente nome, formação e salário, ordenando pelo nome em ordem alfabética.
+select * from professor;
+select * from curso;
+select nome, salario, formação from professor where matricula not in
+	( select mat_coordenador from curso is not null ) order by nome; 
 
 -- 13. Liste as disciplinas que:
 -- possuem professor cadastrado;
@@ -124,3 +130,7 @@ select nome, qtde_matriculados from professor where qtde_matriculados >
 -- e possuem uma carga horária entre 40 e 80 horas.
 -- Apresente: nome da disciplina, Alunos, Carga_Horaria
 -- Ordene primeiro pela carga horária em ordem decrescente e, em caso de empate, pela quantidade de alunos em ordem decrescente.
+select * from disciplina;
+select * from professor;
+select nome as 'Nome da Disciplina', qtde_matriculados as 'Alunos', ch as 'Carga_Horaria' from disciplina where mat_professor is not null and mat_professor in
+ ( select matricula from professor where salario > 5800 ) and nome not like '%TCC%' and ch between 40 and 80 order by ch desc, qtde_matriculados desc;
