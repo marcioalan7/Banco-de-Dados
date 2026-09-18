@@ -121,7 +121,7 @@ select * from disciplina where mat_professor =
 select * from professor;
 select * from curso;
 select nome, salario, formação from professor where matricula not in
-	( select mat_coordenador from curso is not null ) order by nome; 
+	( select mat_coordenador from curso where mat_coordenador is not null ) order by nome; 
 
 -- 13. Liste as disciplinas que:
 -- possuem professor cadastrado;
